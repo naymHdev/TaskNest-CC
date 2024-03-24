@@ -28,6 +28,7 @@ const AddTask = () => {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={null}
       >
         <p>Some contents...</p>
         <p>Some contents...</p>
