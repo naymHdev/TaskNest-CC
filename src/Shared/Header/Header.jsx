@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <div>
@@ -9,9 +11,11 @@ const Header = () => {
         </div>
 
         <div className="navbar-end">
-          <a className="btn bg-[#F89A67] text-slate-100 hover:bg-[#AF6928] border-none shadow-md">
-            My Task
-          </a>
+          <Link to="/dashboard">
+            <a className="btn bg-[#F89A67] text-slate-100 hover:bg-[#AF6928] border-none shadow-md">
+              My Task
+            </a>
+          </Link>
         </div>
       </div>
     </div>
