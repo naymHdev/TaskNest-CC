@@ -1,10 +1,13 @@
+import FilterSection from "./FilterSection";
 
 
 const Dashboard = () => {
     return (
-        <div>
-            <p>my task</p>
-        </div>
+        <>
+            <section>
+                <FilterSection />
+            </section>
+        </>
     );
 };
 
