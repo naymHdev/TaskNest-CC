@@ -15,14 +15,14 @@ const FilterSection = () => {
   };
 
   return (
-    <div className=" flex justify-between py-8">
+    <div className="grid md:flex justify-between py-8">
       <section>
-        <div className=" flex items-center gap-5">
+        <div className="flex items-center gap-5">
           <div className=" flex items-center text-xl gap-1 font-semibold">
             <IoFilter />
             <h3>Filter</h3>
           </div>
-          <div className="md:flex gap-5 items-center">
+          <div className="md:flex gap-5 space-y-3 md:space-y-0 items-center">
             <div>
               <Input placeholder="Assignee Name" />
             </div>
@@ -61,7 +61,7 @@ const FilterSection = () => {
           </div>
         </div>
         <div className="mt-5 flex items-center gap-5">
-          <div className=" flex items-center gap-1 font-semibold">
+          <div className="flex items-center gap-1 font-semibold">
             <FaFilter />
             <h3 className=" text-xl">Short</h3>
           </div>
@@ -90,7 +90,7 @@ const FilterSection = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section className=" flex justify-end items-center md:mt-0 mt-5 order-fast md:order-last">
         <div>
           <AddTask />
         </div>

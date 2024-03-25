@@ -8,7 +8,7 @@ const TaskCard = () => {
           <p>18 Feb 2024</p>
           <div className="dropdown dropdown-hover">
             <div tabIndex={0}>
-              <PiDotsThreeCircleVerticalDuotone className=" text-2xl hover:cursor-pointer" />
+              <PiDotsThreeCircleVerticalDuotone className=" text-slate-900 text-2xl hover:cursor-pointer" />
             </div>
             <ul
               tabIndex={0}
@@ -25,10 +25,10 @@ const TaskCard = () => {
           </div>
         </div>
         <div className="mt-3 space-y-3">
-          <h3 className=" text-xl font-medium">
+          <h3 className=" text-xl font-medium text-slate-800">
             Testing and user feedback for dribble short{" "}
           </h3>
-          <p>
+          <p className=" text-slate-700">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil,
             voluptatum!
           </p>

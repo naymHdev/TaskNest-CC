@@ -3,7 +3,7 @@ import Sidebar from "../Components/Sidebar";
 
 const DashboardLayout = () => {
   return (
-    <div className="flex">
+    <div className="flex overflow-hidden">
       <div>
         <Sidebar />
       </div>
