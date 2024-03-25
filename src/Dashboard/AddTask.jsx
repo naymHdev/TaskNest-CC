@@ -24,15 +24,17 @@ const AddTask = () => {
         <CgPlayListAdd />
       </button>
       <Modal
-        title="Basic Modal"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <section>
+          <div>
+            <h3 className=" text-2xl font-medium text-slate-800">Create a New Task</h3>
+            <p className=" text-slate-600">Add your teammate to your team and start working together on going done!</p>
+          </div>
+        </section>
       </Modal>
     </>
   );
