@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 
-const AddTaskForm = ({ onSubmit }) => {
+const AddTaskForm = () => {
   const {
     reset,
     register,
@@ -10,7 +10,7 @@ const AddTaskForm = ({ onSubmit }) => {
   } = useForm();
 
   const onSubmitHandler = (data) => {
-    onSubmit(data);
+    console.log(data);
   };
 
   const handleTaskCancel = () => {

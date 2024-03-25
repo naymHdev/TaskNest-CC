@@ -5,7 +5,6 @@ import AddTaskForm from "./AddTaskForm";
 
 const AddTask = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [tasks, setTasks] = useState([]);
 
   // // Modal Handel
   const showModal = () => {
@@ -17,13 +16,6 @@ const AddTask = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
-  // Task Handel
-  const handleSubmit = (data) => {
-    setTasks([...tasks, data]);
-  };
-
-  console.log("tasks are -----------",tasks);
 
   return (
     <>
@@ -51,7 +43,7 @@ const AddTask = () => {
             </p>
           </div>
           <div>
-            <AddTaskForm onSubmit={handleSubmit} />
+            <AddTaskForm />
           </div>
         </section>
       </Modal>
