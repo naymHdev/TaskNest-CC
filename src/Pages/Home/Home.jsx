@@ -1,11 +1,11 @@
+import Activity from "./Activity";
 import Banner from "./Banner";
 
 const Home = () => {
   return (
     <>
-      <div>
-        <Banner />
-      </div>
+      <Banner />
+      <Activity />
     </>
   );
 };
