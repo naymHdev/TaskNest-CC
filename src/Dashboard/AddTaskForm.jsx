@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addTask } from "../redux/features/tasks/tasksSlice.js";
+import moment from "moment";
 
 const AddTaskForm = () => {
   const {
@@ -9,8 +12,13 @@ const AddTaskForm = () => {
     formState: { errors },
   } = useForm();
 
+  const dispatch = useDispatch();
+
   const onSubmitHandler = (data) => {
-    console.log(data);
+    const time = moment().format("ll");
+    const taskInfo = { ...data, time };
+
+    dispatch(addTask(taskInfo));
   };
 
   const handleTaskCancel = () => {

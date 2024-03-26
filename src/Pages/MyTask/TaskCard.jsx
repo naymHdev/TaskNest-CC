@@ -1,6 +1,6 @@
 import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
 
-const TaskCard = () => {
+const TaskCard = ({task}) => {
   return (
     <>
       <section className={`mt-5 bg-[#EEEEEE] rounded-xl p-2 shadow-md`}>
