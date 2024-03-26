@@ -1,11 +1,16 @@
+/* eslint-disable react/prop-types */
 import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
 
-const TaskCard = ({task}) => {
+const TaskCard = ({ task }) => {
+  // console.log(task);
+
+  const { assignee, description, title, time, priority } = task || {};
+
   return (
     <>
       <section className={`mt-5 bg-[#EEEEEE] rounded-xl p-2 shadow-md`}>
         <div className=" flex items-center justify-between font-semibold">
-          <p>18 Feb 2024</p>
+          <p className=" text-sm">{time}</p>
           <div className="dropdown dropdown-hover">
             <div tabIndex={0}>
               <PiDotsThreeCircleVerticalDuotone className=" text-slate-900 text-2xl hover:cursor-pointer" />
@@ -25,18 +30,12 @@ const TaskCard = ({task}) => {
           </div>
         </div>
         <div className="mt-3 space-y-3">
-          <h3 className=" text-xl font-medium text-slate-800">
-            Testing and user feedback for dribble short{" "}
-          </h3>
-          <p className=" text-slate-700">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil,
-            voluptatum!
-          </p>
+          <h3 className=" text-xl font-medium text-slate-800">{title}</h3>
+          <p className=" text-slate-700">{description}</p>
         </div>
         <div className=" flex items-center justify-between mt-5">
-          <p className=" font-semibold">Priority</p>
-          {/* TODO: Add tooltip name daynamicaly */}
-          <div className="avatar tooltip" data-tip="Name">
+          <p className=" font-semibold">{priority.toUpperCase()}</p>
+          <div className="avatar tooltip" data-tip={assignee}>
             <div className="w-10 rounded-full">
               <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
             </div>
