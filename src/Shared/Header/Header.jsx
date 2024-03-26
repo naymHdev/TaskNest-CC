@@ -12,8 +12,8 @@ const Header = () => {
 
         <div className="navbar-end md:px-5">
           <Link to="/dashboard">
-            <a className="btn bg-[#F89A67] text-slate-100 hover:bg-[#AF6928] border-none shadow-md">
-              My Task
+            <a className="bg-[#F89A67] font-bold text-slate-100 hover:bg-[#AF6928] border-none shadow-md py-3 px-3 rounded-full">
+              Let's Explore
             </a>
           </Link>
         </div>
