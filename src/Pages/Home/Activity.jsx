@@ -10,7 +10,7 @@ const Activity = () => {
         30 million+ people and teams trust their sanity and productivity to
         myTask
       </h3>
-      <div className="flex items-center justify-evenly text-4xl md:text-6xl">
+      <div className="flex items-center justify-evenly text-4xl md:text-6xl hover:cursor-pointer">
         <FaMicrosoft className="text-[#2b579a]" />
         <TbBrandDisney className="text-[#393e8f]" />
         <FaAmazon className="text-[#ff9900]" />
