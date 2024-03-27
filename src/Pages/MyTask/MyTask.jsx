@@ -4,11 +4,11 @@ import TaskCard from "./TaskCard";
 const MyTask = () => {
   const { tasks } = useSelector((state) => state.tasksSlice);
 
-  const pendingTasks = tasks.filter((item) => item.state === "pending");
-  const inProgressTasks = tasks.filter((item) => item.state === "inProgress");
-  const completedTasks = tasks.filter((item) => item.state === "completed");
-  const deployedTasks = tasks.filter((item) => item.state === "deployed");
-  const deferredTasks = tasks.filter((item) => item.state === "deferred");
+  const pendingTasks = tasks.filter((item) => item.status === "pending");
+  const inProgressTasks = tasks.filter((item) => item.status === "inProgress");
+  const completedTasks = tasks.filter((item) => item.status === "completed");
+  const deployedTasks = tasks.filter((item) => item.status === "deployed");
+  const deferredTasks = tasks.filter((item) => item.status === "deferred");
 
   return (
     <>
