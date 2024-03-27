@@ -5,29 +5,35 @@ const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000",
   }),
+  tagTypes: ["Tasks"],
   endpoints: (builder) => ({
-    // get data in database
+    // get tasks in database
     getTasks: builder.query({
       query: () => "/taskMate/tasks",
+      providesTags: ["Tasks"],
     }),
-    // Post data in database
+    // Post tasks in database
     postTask: builder.mutation({
       query: (data) => ({
         url: "/taskMate/tasks",
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Tasks"],
     }),
+    // Update tasks in database
     updateTask: builder.mutation({
       query: ({ id, data }) => ({
         url: `/taskMate/tasks/${id}`,
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["Tasks"],
     }),
   }),
 });
 
-export const { useGetTasksQuery, usePostTaskMutation } = baseApi;
+export const { useGetTasksQuery, usePostTaskMutation, useUpdateTaskMutation } =
+  baseApi;
 
 export default baseApi;

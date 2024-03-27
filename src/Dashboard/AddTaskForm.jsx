@@ -20,7 +20,8 @@ const AddTaskForm = () => {
 
   const onSubmitHandler = (data) => {
     const time = moment().format("ll");
-    const taskInfo = { ...data, time };
+    const status = "pending";
+    const taskInfo = { ...data, time, status };
     // dispatch(addTask(taskInfo));
     postTask(taskInfo);
   };
