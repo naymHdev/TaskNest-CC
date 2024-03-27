@@ -1,10 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { addTask } from "../redux/features/tasks/tasksSlice.js";
+// import { useDispatch } from "react-redux";
+// import { addTask } from "../redux/features/tasks/tasksSlice.js";
 import moment from "moment";
+import { usePostTaskMutation } from "../redux/features/api/baseApi";
 
 const AddTaskForm = () => {
+  const [postTask, { data: allTask }] = usePostTaskMutation();
+
+  console.log("allTask", allTask);
+
   const {
     reset,
     register,
@@ -12,13 +17,13 @@ const AddTaskForm = () => {
     formState: { errors },
   } = useForm();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch()
 
   const onSubmitHandler = (data) => {
     const time = moment().format("ll");
     const taskInfo = { ...data, time };
-
-    dispatch(addTask(taskInfo));
+    // dispatch(addTask(taskInfo));
+    postTask(taskInfo);
   };
 
   const handleTaskCancel = () => {
