@@ -1,5 +1,5 @@
+import { useGetTasksQuery } from "../../redux/features/tasks/tasksApi";
 import TaskCard from "./TaskCard";
-import { useGetTasksQuery } from "../../redux/features/api/baseApi";
 
 const MyTask = () => {
   const { data: tasks } = useGetTasksQuery();
