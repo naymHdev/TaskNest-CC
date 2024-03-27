@@ -12,6 +12,9 @@ const PrivateRoute = ({ children }) => {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="flex items-center">
+          <h2 className="text-3xl text-[#F89A67] md:px-5 font-bold">
+            Task<span className="text-slate-900">mate</span>
+          </h2>
           <ImSpinner10 className="text-5xl animate-spin" />
         </div>
       </div>
