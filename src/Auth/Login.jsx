@@ -35,7 +35,7 @@ const Login = () => {
   return (
     <section className=" w-11/12 md:w-7/12 mx-auto mt-10 mb-10 border rounded-xl shadow-md bg-slate-50 md:p-10 p-2">
       <div>
-        <h3 className=" text-2xl font-bold">Resolute Point</h3>
+        <h3 className=" text-2xl font-bold">Taskmate</h3>
       </div>
       <div className=" mt-10">
         <h3 className=" text-xl font-semibold">Log in your account</h3>
