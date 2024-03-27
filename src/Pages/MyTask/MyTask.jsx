@@ -3,9 +3,8 @@ import { useGetTasksQuery } from "../../redux/features/api/baseApi";
 
 const MyTask = () => {
   const { data: tasks } = useGetTasksQuery();
-  console.log(tasks);
 
-  const pendingTasks = tasks?.filter((item) => item.status === "pending");
+  // const pendingTasks = tasks?.filter((item) => item.status === "pending");
   const inProgressTasks = tasks?.filter((item) => item.status === "inProgress");
   const completedTasks = tasks?.filter((item) => item.status === "completed");
   const deployedTasks = tasks?.filter((item) => item.status === "deployed");
@@ -19,7 +18,7 @@ const MyTask = () => {
             <h3 className=" text-xl font-medium text-center">Pending</h3>
           </div>
           <div>
-            {pendingTasks?.map((item) => (
+            {tasks?.map((item) => (
               <TaskCard key={item._id} task={item} />
             ))}
           </div>

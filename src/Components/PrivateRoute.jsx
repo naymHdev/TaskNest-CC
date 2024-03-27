@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Navigate, useLocation } from "react-router-dom";
-import { ImSpinner10 } from "react-icons/im";
 import useAuth from "../Hooks/useAuth";
+import Loading from "./Loading";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -9,16 +9,7 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="flex items-center">
-          <h2 className="text-3xl text-[#F89A67] md:px-5 font-bold">
-            Task<span className="text-slate-900">mate</span>
-          </h2>
-          <ImSpinner10 className="text-5xl animate-spin" />
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (user?.email) {
