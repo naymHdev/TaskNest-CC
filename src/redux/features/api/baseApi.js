@@ -12,10 +12,17 @@ const baseApi = createApi({
     }),
     // Post data in database
     postTask: builder.mutation({
-      query: (post) => ({
+      query: (data) => ({
         url: "/taskMate/tasks",
         method: "POST",
-        body: post,
+        body: data,
+      }),
+    }),
+    updateTask: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/taskMate/tasks/${id}`,
+        method: "PATCH",
+        body: data,
       }),
     }),
   }),

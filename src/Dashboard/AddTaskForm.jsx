@@ -6,9 +6,8 @@ import moment from "moment";
 import { usePostTaskMutation } from "../redux/features/api/baseApi";
 
 const AddTaskForm = () => {
-  const [postTask, { data: allTask }] = usePostTaskMutation();
-
-  console.log("allTask", allTask);
+  const [postTask] = usePostTaskMutation();
+  // console.log("allTask", allTask);
 
   const {
     reset,

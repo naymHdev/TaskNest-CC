@@ -33,8 +33,16 @@ const TaskCard = ({ task }) => {
           <h3 className=" text-xl font-medium text-slate-800">{title}</h3>
           <p className=" text-slate-700">{description}</p>
         </div>
-        <div className=" flex items-center justify-between mt-5">
-          <p className={`font-bold text-sm ${priority === "high" && "text-green-700"} ${priority === "medium" && "text-yellow-700"} ${priority === "low" && "text-red-700"}`}>{priority.toUpperCase()}</p>
+        <div className=" flex items-center justify-between mt-3">
+          <p
+            className={`font-bold text-sm ${
+              priority === "high" && "text-green-700"
+            } ${priority === "medium" && "text-yellow-700"} ${
+              priority === "low" && "text-red-700"
+            }`}
+          >
+            {priority.toUpperCase()}
+          </p>
           <div className="avatar tooltip" data-tip={assignee}>
             <div className="w-10 rounded-full">
               <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
