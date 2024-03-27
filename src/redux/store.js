@@ -1,10 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tasksSlice from "./features/tasks/tasksSlice";
+import baseApi from "./features/api/baseApi";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 const store = configureStore({
   reducer: {
-    tasksSlice: tasksSlice,
+    [baseApi.reducerPath]: baseApi.reducer,
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(baseApi.middleware),
 });
+
+setupListeners(store.dispatch);
 
 export default store;
