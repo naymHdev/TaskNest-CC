@@ -6,7 +6,7 @@ import PrivateAxios from "../Hooks/PrivateAxios";
 import useAuth from "../Hooks/useAuth";
 
 const Register = () => {
-  const { userCreate, updateUser, googleLogin } = useAuth();
+  const { userCreate, updateUser, googleJoin } = useAuth();
   const navigate = useNavigate();
 
   const {
@@ -36,7 +36,7 @@ const Register = () => {
   };
 
   const handleGoogle = async () => {
-    await googleLogin();
+    await googleJoin();
     toast.success("User Account Create Success!");
     navigate("/");
   };

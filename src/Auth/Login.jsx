@@ -2,11 +2,11 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
+import useAuth from "../Hooks/useAuth";
 
 const Login = () => {
-  const { googleLogin, userLogin } = useAuth();
+  const { googleJoin, userLogin } = useAuth();
 
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const Login = () => {
   };
 
   const handleGoogle = async () => {
-    await googleLogin();
+    await googleJoin();
     toast.success("User Account Log in Success!");
     navigate("/");
   };
