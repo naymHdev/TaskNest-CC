@@ -1,17 +1,23 @@
-import { Input, Select } from "antd";
+import { Input, Select, DatePicker } from "antd";
 import { IoFilter } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
-import { DatePicker } from "antd";
 import AddTask from "./AddTask";
+import { useState } from "react";
+const { RangePicker } = DatePicker;
 
 const FilterSection = () => {
+  const [value, setValue] = useState(null);
+
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
 
   // Date picker
-  const onChange = (date, dateString) => {
-    console.log("Date picker", date, dateString);
+  const disabledDate = (current, { from }) => {
+    if (from) {
+      return Math.abs(current.diff(from, "days")) >= 7;
+    }
+    return false;
   };
 
   return (
@@ -50,12 +56,10 @@ const FilterSection = () => {
               />
             </div>
             <div>
-              <DatePicker
-                format={{
-                  format: "YYYY-MM-DD",
-                  type: "mask",
-                }}
-                onChange={onChange}
+              <RangePicker
+                value={value}
+                disabledDate={disabledDate}
+                onChange={setValue}
               />
             </div>
           </div>
