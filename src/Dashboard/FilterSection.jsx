@@ -3,6 +3,7 @@ import { IoFilter } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
 import AddTask from "./AddTask";
 import { useState } from "react";
+import Search from "antd/es/input/Search";
 const { RangePicker } = DatePicker;
 
 const FilterSection = () => {
@@ -19,6 +20,9 @@ const FilterSection = () => {
     }
     return false;
   };
+
+  // Search
+  const onSearch = (value, _e, info) => console.log(info?.source, value);
 
   return (
     <div className="grid md:flex justify-between py-8">
@@ -94,9 +98,18 @@ const FilterSection = () => {
           </div>
         </div>
       </section>
-      <section className=" flex justify-end items-center md:mt-0 mt-5 order-fast md:order-last">
-        <div>
-          <AddTask />
+      <section className="flex md:mt-0 mt-5 order-fast md:order-last">
+        <div className=" space-y-5">
+          <Search
+            placeholder="Search task"
+            onSearch={onSearch}
+            style={{
+              width: 250,
+            }}
+          />
+          <div className=" flex justify-end">
+            <AddTask />
+          </div>
         </div>
       </section>
     </div>
