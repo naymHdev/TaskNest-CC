@@ -1,7 +1,6 @@
 import { Input, Select, DatePicker } from "antd";
 import { IoFilter } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
-import AddTask from "./AddTask";
 import { useState } from "react";
 import Search from "antd/es/input/Search";
 const { RangePicker } = DatePicker;
@@ -99,7 +98,7 @@ const FilterSection = () => {
         </div>
       </section>
       <section className="flex md:mt-0 mt-5 order-fast md:order-last">
-        <div className=" space-y-5">
+        <div>
           <Search
             placeholder="Search task"
             onSearch={onSearch}
@@ -107,9 +106,6 @@ const FilterSection = () => {
               width: 250,
             }}
           />
-          <div className=" flex justify-end">
-            <AddTask />
-          </div>
         </div>
       </section>
     </div>

@@ -25,8 +25,21 @@ const tasksApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Tasks"],
     }),
+    // Deleted Task in database or front end
+    deletedTask: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/taskMate/tasks/${id}`,
+        method: "DELETE",
+        body: data,
+      }),
+      invalidatesTags: ["Tasks"],
+    }),
   }),
 });
 
-export const { useGetTasksQuery, usePostTaskMutation, useUpdateTaskMutation } =
-  tasksApi;
+export const {
+  useGetTasksQuery,
+  usePostTaskMutation,
+  useUpdateTaskMutation,
+  useDeletedTaskMutation,
+} = tasksApi;

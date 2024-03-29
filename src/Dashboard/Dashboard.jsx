@@ -1,5 +1,6 @@
 import MyTask from "../Pages/MyTask/MyTask";
 import FilterSection from "./FilterSection";
+import AddTask from "./AddTask";
 
 const Dashboard = () => {
   return (
@@ -12,6 +13,9 @@ const Dashboard = () => {
       <section>
         <FilterSection />
       </section>
+      <div className="flex justify-end py-5 px-3">
+        <AddTask />
+      </div>
       <section>
         <MyTask />
       </section>
