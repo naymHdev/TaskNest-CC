@@ -1,28 +1,16 @@
 /* eslint-disable react/prop-types */
 import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
-import {
-  useDeletedTaskMutation,
-  useUpdateTaskMutation,
-} from "../../redux/features/tasks/tasksApi";
+import { useDeletedTaskMutation } from "../../redux/features/tasks/tasksApi";
 import EditTask from "./EditTask";
 
 const TaskCard = ({ task }) => {
   const { assignee, description, title, time, priority, _id } = task || {};
 
   const [deletedTask] = useDeletedTaskMutation();
-  const [updateTask] = useUpdateTaskMutation();
 
   const handleTaskDelete = async () => {
     try {
       await deletedTask({ id: _id });
-    } catch (error) {
-      console.error("Error deleting task:", error);
-    }
-  };
-
-  const handleTaskUpdate = async () => {
-    try {
-      await updateTask({ id: _id });
     } catch (error) {
       console.error("Error deleting task:", error);
     }
@@ -41,10 +29,7 @@ const TaskCard = ({ task }) => {
               tabIndex={0}
               className="dropdown-content z-[1] menu bg-[#F9F9F9] rounded-md w-28"
             >
-              <p
-                onClick={handleTaskUpdate}
-                className=" font-bold hover:cursor-pointer p-2 hover:text-green-500"
-              >
+              <p className=" font-bold hover:cursor-pointer p-2 hover:text-green-500">
                 <EditTask task={task} />
               </p>
               <hr className="mt-[1px] mb-[1px]" />

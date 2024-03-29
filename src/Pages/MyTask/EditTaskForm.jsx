@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
+import { useUpdateTaskMutation } from "../../redux/features/tasks/tasksApi";
 
 /* eslint-disable react/prop-types */
 const EditTaskForm = ({ task }) => {
-  const { assignee, description, title, priority, team } = task || {};
+  const { assignee, description, title, priority, team, _id } = task || {};
+
+  const [updateTask] = useUpdateTaskMutation();
 
   const {
     reset,
@@ -17,6 +20,14 @@ const EditTaskForm = ({ task }) => {
 
   const handelReset = () => {
     reset();
+  };
+
+  const handleTaskUpdate = async (id) => {
+    try {
+      await updateTask({ id });
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
   };
 
   return (
@@ -93,22 +104,43 @@ const EditTaskForm = ({ task }) => {
               defaultValue={assignee}
             />
           </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="priority"
-            >
-              Priority
-            </label>
-            <select
-              {...register("priority")}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              defaultValue={priority}
-            >
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
+          <div className="grid md:flex items-center justify-between gap-5 ">
+            <div className="mb-4 w-full">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="priority"
+              >
+                Priority
+              </label>
+              <select
+                {...register("priority")}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                defaultValue={priority}
+              >
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>{" "}
+            <div className="mb-4 w-full">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="status"
+              >
+                Status
+              </label>
+              <select
+                {...register("status")}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="status"
+              >
+                <option value="pending">Pending</option>
+                <option value="inProgress">In Progress</option>
+                <option value="completed">Completed</option>
+                <option value="deployed">Deployed</option>
+                <option value="deferred">Deferred</option>
+              </select>
+            </div>
           </div>
           <div className="flex items-center justify-end gap-3">
             <button
@@ -119,6 +151,7 @@ const EditTaskForm = ({ task }) => {
               Reset
             </button>
             <button
+              onClick={() => handleTaskUpdate(_id)}
               className="bg-[#FA963A] hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
