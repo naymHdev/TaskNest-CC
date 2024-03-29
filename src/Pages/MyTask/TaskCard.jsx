@@ -4,7 +4,7 @@ import {
   useDeletedTaskMutation,
   useUpdateTaskMutation,
 } from "../../redux/features/tasks/tasksApi";
-import EditTaskForm from "./EditTaskForm";
+import EditTask from "./EditTask";
 
 const TaskCard = ({ task }) => {
   const { assignee, description, title, time, priority, _id } = task || {};
@@ -45,7 +45,7 @@ const TaskCard = ({ task }) => {
                 onClick={handleTaskUpdate}
                 className=" font-bold hover:cursor-pointer p-2 hover:text-green-500"
               >
-                <EditTaskForm />
+                <EditTask task={task} />
               </p>
               <hr className="mt-[1px] mb-[1px]" />
               <p
