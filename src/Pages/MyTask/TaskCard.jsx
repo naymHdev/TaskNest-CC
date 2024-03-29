@@ -1,19 +1,19 @@
 /* eslint-disable react/prop-types */
 import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
-import { useDeletedTaskMutation } from "../../redux/features/tasks/tasksApi";
 import EditTask from "./EditTask";
+import PrivateAxios from "../../Hooks/PrivateAxios";
 
 const TaskCard = ({ task }) => {
   const { assignee, description, title, time, priority, _id } = task || {};
 
-  const [deletedTask] = useDeletedTaskMutation();
-
-  const handleTaskDelete = async () => {
-    try {
-      await deletedTask({ id: _id });
-    } catch (error) {
-      console.error("Error deleting task:", error);
-    }
+  const handleTaskDelete = async (id) => {
+    await PrivateAxios.delete(`/taskMate/tasks/${id}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -34,7 +34,7 @@ const TaskCard = ({ task }) => {
               </p>
               <hr className="mt-[1px] mb-[1px]" />
               <p
-                onClick={handleTaskDelete}
+                onClick={() => handleTaskDelete(_id)}
                 className=" font-bold hover:cursor-pointer p-2 hover:text-red-500"
               >
                 Delete

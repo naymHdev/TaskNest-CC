@@ -1,14 +1,16 @@
-import { useGetTasksQuery } from "../../redux/features/tasks/tasksApi";
+import useTasks from "../../Hooks/useTasks";
 import TaskCard from "./TaskCard";
 
 const MyTask = () => {
-  const { data: tasks } = useGetTasksQuery();
+  const [isTasks] = useTasks();
 
-  const pendingTasks = tasks?.filter((item) => item.status === "pending");
-  const inProgressTasks = tasks?.filter((item) => item.status === "inProgress");
-  const completedTasks = tasks?.filter((item) => item.status === "completed");
-  const deployedTasks = tasks?.filter((item) => item.status === "deployed");
-  const deferredTasks = tasks?.filter((item) => item.status === "deferred");
+  const pendingTasks = isTasks?.filter((task) => task.status === "pending");
+  const inProgressTasks = isTasks?.filter(
+    (task) => task.status === "inProgress"
+  );
+  const completedTasks = isTasks?.filter((task) => task.status === "completed");
+  const deployedTasks = isTasks?.filter((task) => task.status === "deployed");
+  const deferredTasks = isTasks?.filter((task) => task.status === "deferred");
 
   return (
     <>
@@ -20,8 +22,8 @@ const MyTask = () => {
             </h3>
           </div>
           <div>
-            {pendingTasks?.map((item) => (
-              <TaskCard key={item._id} task={item} />
+            {pendingTasks?.map((task) => (
+              <TaskCard key={task._id} task={task} />
             ))}
           </div>
         </div>
@@ -30,8 +32,8 @@ const MyTask = () => {
             <h3 className=" text-xl font-medium text-center">In Progress</h3>
           </div>
           <div>
-            {inProgressTasks?.map((item) => (
-              <TaskCard key={item._id} task={item} />
+            {inProgressTasks?.map((task) => (
+              <TaskCard key={task._id} task={task} />
             ))}
           </div>
         </div>
@@ -40,8 +42,8 @@ const MyTask = () => {
             <h3 className=" text-xl font-medium text-center">Completed</h3>
           </div>
           <div>
-            {completedTasks?.map((item) => (
-              <TaskCard key={item._id} task={item} />
+            {completedTasks?.map((task) => (
+              <TaskCard key={task._id} task={task} />
             ))}
           </div>
         </div>
@@ -50,8 +52,8 @@ const MyTask = () => {
             <h3 className=" text-xl font-medium text-center">Deployed</h3>
           </div>
           <div>
-            {deployedTasks?.map((item) => (
-              <TaskCard key={item._id} task={item} />
+            {deployedTasks?.map((task) => (
+              <TaskCard key={task._id} task={task} />
             ))}
           </div>
         </div>
@@ -60,8 +62,8 @@ const MyTask = () => {
             <h3 className=" text-xl font-medium text-center">Deferred</h3>
           </div>
           <div>
-            {deferredTasks?.map((item) => (
-              <TaskCard key={item._id} task={item} />
+            {deferredTasks?.map((task) => (
+              <TaskCard key={task._id} task={task} />
             ))}
           </div>
         </div>
