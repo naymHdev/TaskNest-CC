@@ -16,7 +16,7 @@ const AddTaskForm = () => {
   } = useForm();
 
   const onSubmitHandler = (data) => {
-    const time = moment().format("ll");
+    const time = moment().format('l');
     const status = "pending";
     const taskInfo = { ...data, time, status };
     try {

@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
-import { Input, Select, DatePicker } from "antd";
+import { Input, DatePicker } from "antd";
 import { IoFilter } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
 import { useState } from "react";
 const { RangePicker } = DatePicker;
 
-const FilterSection = ({ handelSearch, handelAssigneeFilter }) => {
+const FilterSection = ({
+  handelSearch,
+  handelAssigneeFilter,
+  handelPriorityFilter,
+}) => {
   const [value, setValue] = useState(null);
-
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  };
 
   // Date picker
   const disabledDate = (current, { from }) => {
@@ -30,29 +30,9 @@ const FilterSection = ({ handelSearch, handelAssigneeFilter }) => {
           </div>
           <div className="md:flex gap-5 space-y-3 md:space-y-0 items-center">
             <div>
-              <Input onChange={handelAssigneeFilter} placeholder="Assignee Name" />
-            </div>
-            <div>
-              <Select
-                defaultValue="Priority"
-                style={{
-                  width: 120,
-                }}
-                onChange={handleChange}
-                options={[
-                  {
-                    value: "high",
-                    label: "High",
-                  },
-                  {
-                    value: "medium",
-                    label: "Medium",
-                  },
-                  {
-                    value: "low",
-                    label: "Low",
-                  },
-                ]}
+              <Input
+                onChange={handelAssigneeFilter}
+                placeholder="Assignee Name"
               />
             </div>
             <div>
@@ -70,27 +50,16 @@ const FilterSection = ({ handelSearch, handelAssigneeFilter }) => {
             <h3 className=" text-xl">Short</h3>
           </div>
           <div>
-            <Select
-              defaultValue="Priority"
-              style={{
-                width: 120,
-              }}
-              onChange={handleChange}
-              options={[
-                {
-                  value: "high",
-                  label: "High",
-                },
-                {
-                  value: "medium",
-                  label: "Medium",
-                },
-                {
-                  value: "low",
-                  label: "Low",
-                },
-              ]}
-            />
+            <select
+              onChange={handelPriorityFilter}
+              className="w-full bg-inherit border p-1 rounded-md focus:outline-none focus:border-blue-500"
+              name="priority"
+              id="priority"
+            >
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
           </div>
         </div>
       </section>

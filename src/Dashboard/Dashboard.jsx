@@ -20,12 +20,30 @@ const Dashboard = () => {
     setRecords(search);
   };
 
+  // Filter with assignee name
   const handelAssigneeFilter = (e) => {
     const search = isTasks?.filter((item) =>
       item.assignee.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setRecords(search);
   };
+
+  // Filter with priority
+  const handelPriorityFilter = (e) => {
+    const search = isTasks?.filter((item) =>
+      item.priority.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setRecords(search);
+  };
+
+  // Filter with date
+  const handelDateFilter = (e) => {
+    const search = isTasks?.filter((item) =>
+      item.time.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setRecords(search);
+  };
+
   return (
     <>
       <div className="p-3">
@@ -37,6 +55,8 @@ const Dashboard = () => {
         <FilterSection
           handelSearch={handelSearch}
           handelAssigneeFilter={handelAssigneeFilter}
+          handelPriorityFilter={handelPriorityFilter}
+          handelDateFilter={handelDateFilter}
         />
       </section>
       <div className="flex justify-end py-1 px-2">
