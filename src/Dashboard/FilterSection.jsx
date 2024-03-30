@@ -1,29 +1,12 @@
+/* eslint-disable react/prop-types */
 import { Input, Select, DatePicker } from "antd";
 import { IoFilter } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
 import { useState } from "react";
-import useTasks from "../Hooks/useTasks";
 const { RangePicker } = DatePicker;
 
-const FilterSection = () => {
-  const [isTasks] = useTasks();
+const FilterSection = ({ handelSearch }) => {
   const [value, setValue] = useState(null);
-
-  const [val, setVal] = useState("");
-  const [task, setTask] = useState(isTasks);
-  const [myTask, setMyTask] = useState(task);
-
-  // Search functionality
-  const filterEvent = (e) => {
-    setVal(e.target.value);
-    if (e.target.value) {
-      let result = myTask?.filter((item) => item.toLowerCase().includes(e.target.value.value));
-      console.log(result);
-      setTask(result);
-    } else {
-      setTask(myTask);
-    }
-  };
 
   const handleChange = (value) => {
     console.log(`selected ${value}`);
@@ -114,9 +97,8 @@ const FilterSection = () => {
       <section className="flex md:mt-0 mt-5 order-fast md:order-last">
         <div>
           <input
-            onChange={(e) => filterEvent(e)}
+            onChange={handelSearch}
             className="w-full bg-inherit border p-1 rounded-md focus:outline-none focus:border-blue-500"
-            value={val}
             type="search"
             name=""
             id=""

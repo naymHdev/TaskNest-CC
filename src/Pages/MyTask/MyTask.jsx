@@ -1,18 +1,19 @@
+/* eslint-disable react/prop-types */
 import toast from "react-hot-toast";
 import PrivateAxios from "../../Hooks/PrivateAxios";
-import useTasks from "../../Hooks/useTasks";
+// import useTasks from "../../Hooks/useTasks";
 import TaskCard from "./TaskCard";
 
-const MyTask = () => {
-  const [isTasks, refetch] = useTasks();
+const MyTask = ({records, refetch}) => {
+  // const [isTasks, refetch] = useTasks();
 
-  const pendingTasks = isTasks?.filter((task) => task.status === "pending");
-  const inProgressTasks = isTasks?.filter(
+  const pendingTasks = records?.filter((task) => task.status === "pending");
+  const inProgressTasks = records?.filter(
     (task) => task.status === "inProgress"
   );
-  const completedTasks = isTasks?.filter((task) => task.status === "completed");
-  const deployedTasks = isTasks?.filter((task) => task.status === "deployed");
-  const deferredTasks = isTasks?.filter((task) => task.status === "deferred");
+  const completedTasks = records?.filter((task) => task.status === "completed");
+  const deployedTasks = records?.filter((task) => task.status === "deployed");
+  const deferredTasks = records?.filter((task) => task.status === "deferred");
 
   // Task deleting handel
   const handleTaskDelete = (id) => {
