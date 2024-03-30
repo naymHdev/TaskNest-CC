@@ -14,6 +14,8 @@ const MyTask = () => {
   const deployedTasks = isTasks?.filter((task) => task.status === "deployed");
   const deferredTasks = isTasks?.filter((task) => task.status === "deferred");
 
+
+// Task deleting handel
   const handleTaskDelete = (id) => {
     PrivateAxios.delete(`/taskMate/tasks/${id}`)
       .then((res) => {

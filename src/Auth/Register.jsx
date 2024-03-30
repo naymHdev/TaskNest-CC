@@ -20,7 +20,7 @@ const Register = () => {
     const userInfo = { name, email };
 
     try {
-      const resp = await PrivateAxios.post("/users", userInfo);
+      const resp = await PrivateAxios.post("/taskMate/users", userInfo);
       const res = await userCreate(data.email, data.password);
       if (res.operationType === "signIn" || resp.data === "acknowledged") {
         toast.success("User created success.");

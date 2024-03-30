@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import PrivateAxios from "../../Hooks/PrivateAxios";
+import useUser from "../../Hooks/useUser";
+import toast from "react-hot-toast";
 
 const EditTaskForm = ({ task }) => {
   const { assignee, description, title, priority, team } = task || {};
+  const { isUser } = useUser();
 
   const {
     reset,
@@ -13,13 +16,24 @@ const EditTaskForm = ({ task }) => {
   } = useForm();
 
   const onSubmitHandler = (data) => {
+    const assignee = data.assignee;
+    const status = data.status;
+    const title = data.title;
+    const description = data.description;
+    const priority = data.description;
+    const team = data.team;
+
+    const updateInfo = { assignee, status, title, description, priority, team };
+
     try {
-      PrivateAxios.put("/taskMate/tasks", data)
+      PrivateAxios.put(`/taskMate/tasks/${isUser._id}`, updateInfo)
         .then((res) => {
-          console.log("Update task", res);
+          if (res.data.acknowledged) {
+            toast.success("Task Updated Complete");
+          }
         })
         .catch((err) => {
-          console.log("Update err", err);
+          toast.error(err.message);
         });
     } catch (error) {
       console.log(error);
