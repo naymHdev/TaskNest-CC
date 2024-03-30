@@ -15,7 +15,14 @@ const Dashboard = () => {
   // Search handel
   const handelSearch = (e) => {
     const search = isTasks?.filter((item) =>
-      item.title.toLowerCase().includes(e.target.value)
+      item.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setRecords(search);
+  };
+
+  const handelAssigneeFilter = (e) => {
+    const search = isTasks?.filter((item) =>
+      item.assignee.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setRecords(search);
   };
@@ -27,7 +34,10 @@ const Dashboard = () => {
         </h1>
       </div>
       <section>
-        <FilterSection handelSearch={handelSearch} />
+        <FilterSection
+          handelSearch={handelSearch}
+          handelAssigneeFilter={handelAssigneeFilter}
+        />
       </section>
       <div className="flex justify-end py-1 px-2">
         <AddTask />

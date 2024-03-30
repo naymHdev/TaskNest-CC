@@ -5,7 +5,7 @@ import { FaFilter } from "react-icons/fa";
 import { useState } from "react";
 const { RangePicker } = DatePicker;
 
-const FilterSection = ({ handelSearch }) => {
+const FilterSection = ({ handelSearch, handelAssigneeFilter }) => {
   const [value, setValue] = useState(null);
 
   const handleChange = (value) => {
@@ -30,7 +30,7 @@ const FilterSection = ({ handelSearch }) => {
           </div>
           <div className="md:flex gap-5 space-y-3 md:space-y-0 items-center">
             <div>
-              <Input placeholder="Assignee Name" />
+              <Input onChange={handelAssigneeFilter} placeholder="Assignee Name" />
             </div>
             <div>
               <Select

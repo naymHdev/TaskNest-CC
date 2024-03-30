@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import useTasks from "../../Hooks/useTasks";
 
 const TaskCard = ({ task, handleTaskDelete }) => {
-  const { assignee, description, title, time, priority, _id, status, team } =
+  const { assignee, description, title, time, priority, _id, status } =
     task || {};
 
   const [, refetch] = useTasks();
@@ -86,9 +86,7 @@ const TaskCard = ({ task, handleTaskDelete }) => {
           <p className=" text-slate-700">{description}</p>
         </div>
         <div className=" flex items-center justify-between mt-5">
-          <p data-tip={assignee} className="tooltip text-sm font-bold">
-            @{team.toUpperCase()}
-          </p>
+          <p className="text-sm font-bold">@{assignee.toUpperCase()}</p>
           <p
             className={`font-bold text-sm ${
               priority === "high" && "text-green-700"
