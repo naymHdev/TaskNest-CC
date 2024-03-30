@@ -1,11 +1,51 @@
 /* eslint-disable react/prop-types */
 import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
 import EditTask from "./EditTask";
+import moment from "moment";
+import PrivateAxios from "../../Hooks/PrivateAxios";
+import toast from "react-hot-toast";
+import useTasks from "../../Hooks/useTasks";
 
-const TaskCard = ({ task, handleTaskDelete, onSubmitHandler }) => {
+const TaskCard = ({ task, handleTaskDelete }) => {
   const { assignee, description, title, time, priority, _id } = task || {};
 
+  const [, refetch] = useTasks();
 
+  // Handel update task
+  const onSubmitHandler = (data) => {
+    const assignee = data.assignee;
+    const status = data.status;
+    const title = data.title;
+    const description = data.description;
+    const priority = data.priority;
+    const team = data.team;
+    const time = moment().format("ll");
+
+    const updateInfo = {
+      assignee,
+      status,
+      title,
+      description,
+      priority,
+      team,
+      time,
+    };
+
+    try {
+      PrivateAxios.put(`/taskMate/tasks/${_id}`, updateInfo)
+        .then((res) => {
+          if (res.data.acknowledged) {
+            toast.success("Task Updated Complete");
+            refetch();
+          }
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>

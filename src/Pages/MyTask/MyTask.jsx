@@ -2,20 +2,19 @@ import toast from "react-hot-toast";
 import PrivateAxios from "../../Hooks/PrivateAxios";
 import useTasks from "../../Hooks/useTasks";
 import TaskCard from "./TaskCard";
-import useUser from "../../Hooks/useUser";
-import moment from "moment";
 
 const MyTask = () => {
   const [isTasks, refetch] = useTasks();
-  const { isUser } = useUser();
 
   const pendingTasks = isTasks?.filter((task) => task.status === "pending");
   const inProgressTasks = isTasks?.filter(
     (task) => task.status === "inProgress"
   );
   const completedTasks = isTasks?.filter((task) => task.status === "completed");
+  console.log("completedTasks", completedTasks);
   const deployedTasks = isTasks?.filter((task) => task.status === "deployed");
   const deferredTasks = isTasks?.filter((task) => task.status === "deferred");
+  console.log("deferredTasks", deferredTasks);
 
   // Task deleting handel
   const handleTaskDelete = (id) => {
@@ -30,42 +29,6 @@ const MyTask = () => {
         console.log(err);
         toast.error(err.message);
       });
-  };
-
-  // Handel update task
-  const onSubmitHandler = (data) => {
-    const assignee = data.assignee;
-    const status = data.status;
-    const title = data.title;
-    const description = data.description;
-    const priority = data.priority;
-    const team = data.team;
-    const time = moment().format("ll");
-
-    const updateInfo = {
-      assignee,
-      status,
-      title,
-      description,
-      priority,
-      team,
-      time,
-    };
-
-    try {
-      PrivateAxios.put(`/taskMate/tasks/${isUser._id}`, updateInfo)
-        .then((res) => {
-          if (res.data.acknowledged) {
-            toast.success("Task Updated Complete");
-            refetch();
-          }
-        })
-        .catch((err) => {
-          toast.error(err.message);
-        });
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -83,14 +46,15 @@ const MyTask = () => {
                 key={task._id}
                 task={task}
                 handleTaskDelete={handleTaskDelete}
-                onSubmitHandler={onSubmitHandler}
               />
             ))}
           </div>
         </div>
         <div>
           <div className=" rounded-md shadow-md bg-[#F8EDC8] py-3">
-            <h3 className=" text-xl font-medium text-center">In Progress</h3>
+            <h3 className=" text-xl font-medium text-center">
+              In Progress ({inProgressTasks?.length})
+            </h3>
           </div>
           <div>
             {inProgressTasks?.map((task) => (
@@ -98,14 +62,15 @@ const MyTask = () => {
                 key={task._id}
                 task={task}
                 handleTaskDelete={handleTaskDelete}
-                onSubmitHandler={onSubmitHandler}
               />
             ))}
           </div>
         </div>
         <div>
           <div className=" rounded-md shadow-md bg-[#C8F8CD] py-3">
-            <h3 className=" text-xl font-medium text-center">Completed</h3>
+            <h3 className=" text-xl font-medium text-center">
+              Completed ({completedTasks?.length})
+            </h3>
           </div>
           <div>
             {completedTasks?.map((task) => (
@@ -113,14 +78,15 @@ const MyTask = () => {
                 key={task._id}
                 task={task}
                 handleTaskDelete={handleTaskDelete}
-                onSubmitHandler={onSubmitHandler}
               />
             ))}
           </div>
         </div>
         <div>
           <div className=" rounded-md shadow-md bg-[#c3c7fb] py-3">
-            <h3 className=" text-xl font-medium text-center">Deployed</h3>
+            <h3 className=" text-xl font-medium text-center">
+              Deployed ({deployedTasks?.length})
+            </h3>
           </div>
           <div>
             {deployedTasks?.map((task) => (
@@ -128,14 +94,15 @@ const MyTask = () => {
                 key={task._id}
                 task={task}
                 handleTaskDelete={handleTaskDelete}
-                onSubmitHandler={onSubmitHandler}
               />
             ))}
           </div>
         </div>
         <div>
           <div className=" rounded-md shadow-md bg-[#C8EBF8] py-3">
-            <h3 className=" text-xl font-medium text-center">Deferred</h3>
+            <h3 className=" text-xl font-medium text-center">
+              Deferred ({deferredTasks?.length})
+            </h3>
           </div>
           <div>
             {deferredTasks?.map((task) => (
@@ -143,7 +110,6 @@ const MyTask = () => {
                 key={task._id}
                 task={task}
                 handleTaskDelete={handleTaskDelete}
-                onSubmitHandler={onSubmitHandler}
               />
             ))}
           </div>
