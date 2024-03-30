@@ -42,7 +42,8 @@ To get started with TaskMaster, follow these steps:
 
 ## Navigate to the Front End project directory:
 
-    Clone the front end epository:
+#### Clone the front end repository:
+
     git clone https://github.com/naymHdev/Taskmate-task-management-cd
 
 ```bash
@@ -64,7 +65,8 @@ To get started with TaskMaster, follow these steps:
 
 ## Navigate to the Backend end project directory:
 
-    Clone the backend epository:
+#### Clone the backend epository:
+
     git clone https://github.com/naymHdev/Taskmate-server
 
 ```bash
