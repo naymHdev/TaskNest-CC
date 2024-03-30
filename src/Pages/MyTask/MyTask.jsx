@@ -2,9 +2,12 @@ import toast from "react-hot-toast";
 import PrivateAxios from "../../Hooks/PrivateAxios";
 import useTasks from "../../Hooks/useTasks";
 import TaskCard from "./TaskCard";
+import useUser from "../../Hooks/useUser";
+import moment from "moment";
 
 const MyTask = () => {
   const [isTasks, refetch] = useTasks();
+  const { isUser } = useUser();
 
   const pendingTasks = isTasks?.filter((task) => task.status === "pending");
   const inProgressTasks = isTasks?.filter(
@@ -14,8 +17,7 @@ const MyTask = () => {
   const deployedTasks = isTasks?.filter((task) => task.status === "deployed");
   const deferredTasks = isTasks?.filter((task) => task.status === "deferred");
 
-
-// Task deleting handel
+  // Task deleting handel
   const handleTaskDelete = (id) => {
     PrivateAxios.delete(`/taskMate/tasks/${id}`)
       .then((res) => {
@@ -28,6 +30,42 @@ const MyTask = () => {
         console.log(err);
         toast.error(err.message);
       });
+  };
+
+  // Handel update task
+  const onSubmitHandler = (data) => {
+    const assignee = data.assignee;
+    const status = data.status;
+    const title = data.title;
+    const description = data.description;
+    const priority = data.priority;
+    const team = data.team;
+    const time = moment().format("ll");
+
+    const updateInfo = {
+      assignee,
+      status,
+      title,
+      description,
+      priority,
+      team,
+      time,
+    };
+
+    try {
+      PrivateAxios.put(`/taskMate/tasks/${isUser._id}`, updateInfo)
+        .then((res) => {
+          if (res.data.acknowledged) {
+            toast.success("Task Updated Complete");
+            refetch();
+          }
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -45,6 +83,7 @@ const MyTask = () => {
                 key={task._id}
                 task={task}
                 handleTaskDelete={handleTaskDelete}
+                onSubmitHandler={onSubmitHandler}
               />
             ))}
           </div>
@@ -55,7 +94,12 @@ const MyTask = () => {
           </div>
           <div>
             {inProgressTasks?.map((task) => (
-              <TaskCard key={task._id} task={task} />
+              <TaskCard
+                key={task._id}
+                task={task}
+                handleTaskDelete={handleTaskDelete}
+                onSubmitHandler={onSubmitHandler}
+              />
             ))}
           </div>
         </div>
@@ -65,7 +109,12 @@ const MyTask = () => {
           </div>
           <div>
             {completedTasks?.map((task) => (
-              <TaskCard key={task._id} task={task} />
+              <TaskCard
+                key={task._id}
+                task={task}
+                handleTaskDelete={handleTaskDelete}
+                onSubmitHandler={onSubmitHandler}
+              />
             ))}
           </div>
         </div>
@@ -75,7 +124,12 @@ const MyTask = () => {
           </div>
           <div>
             {deployedTasks?.map((task) => (
-              <TaskCard key={task._id} task={task} />
+              <TaskCard
+                key={task._id}
+                task={task}
+                handleTaskDelete={handleTaskDelete}
+                onSubmitHandler={onSubmitHandler}
+              />
             ))}
           </div>
         </div>
@@ -85,7 +139,12 @@ const MyTask = () => {
           </div>
           <div>
             {deferredTasks?.map((task) => (
-              <TaskCard key={task._id} task={task} />
+              <TaskCard
+                key={task._id}
+                task={task}
+                handleTaskDelete={handleTaskDelete}
+                onSubmitHandler={onSubmitHandler}
+              />
             ))}
           </div>
         </div>

@@ -1,15 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import PrivateAxios from "../../Hooks/PrivateAxios";
-import useUser from "../../Hooks/useUser";
-import toast from "react-hot-toast";
-import useTasks from "../../Hooks/useTasks";
-import moment from "moment";
 
-const EditTaskForm = ({ task }) => {
+const EditTaskForm = ({ task, onSubmitHandler }) => {
   const { assignee, description, title, priority, team } = task || {};
-  const { isUser } = useUser();
-  const [, refetch] = useTasks();
 
   const {
     reset,
@@ -17,33 +10,6 @@ const EditTaskForm = ({ task }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const onSubmitHandler = (data) => {
-    const assignee = data.assignee;
-    const status = data.status;
-    const title = data.title;
-    const description = data.description;
-    const priority = data.priority;
-    const team = data.team;
-    const time = moment().format("ll");
-
-    const updateInfo = { assignee, status, title, description, priority, team, time };
-
-    try {
-      PrivateAxios.put(`/taskMate/tasks/${isUser._id}`, updateInfo)
-        .then((res) => {
-          if (res.data.acknowledged) {
-            toast.success("Task Updated Complete");
-            refetch();
-          }
-        })
-        .catch((err) => {
-          toast.error(err.message);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handelReset = () => {
     reset();

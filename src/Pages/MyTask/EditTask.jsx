@@ -3,7 +3,7 @@ import { Modal } from "antd";
 import { useState } from "react";
 import EditTaskForm from "./EditTaskForm";
 
-const EditTask = ({ task }) => {
+const EditTask = ({ task, onSubmitHandler }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // // Modal Handel
@@ -37,7 +37,7 @@ const EditTask = ({ task }) => {
             </p>
           </div>
           <div>
-            <EditTaskForm task={task} />
+            <EditTaskForm task={task} onSubmitHandler={onSubmitHandler} />
           </div>
         </section>
       </Modal>

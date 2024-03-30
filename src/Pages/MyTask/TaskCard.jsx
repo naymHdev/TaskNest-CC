@@ -2,7 +2,7 @@
 import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
 import EditTask from "./EditTask";
 
-const TaskCard = ({ task, handleTaskDelete }) => {
+const TaskCard = ({ task, handleTaskDelete, onSubmitHandler }) => {
   const { assignee, description, title, time, priority, _id } = task || {};
 
 
@@ -21,7 +21,7 @@ const TaskCard = ({ task, handleTaskDelete }) => {
               className="dropdown-content z-[1] menu bg-[#F9F9F9] rounded-md w-28"
             >
               <p className=" font-bold hover:cursor-pointer p-2 hover:text-green-500">
-                <EditTask task={task} />
+                <EditTask task={task} onSubmitHandler={onSubmitHandler} />
               </p>
               <hr className="mt-[1px] mb-[1px]" />
               <p
