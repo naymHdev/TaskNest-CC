@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Input, DatePicker } from "antd";
+import { Input } from "antd";
 import { IoFilter } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
-const { RangePicker } = DatePicker;
 
 const FilterSection = ({
   handelAssigneeFilter,
@@ -25,7 +24,13 @@ const FilterSection = ({
               />
             </div>
             <div>
-              <RangePicker onChange={handelDateFilter} />
+              <input
+                onChange={handelDateFilter}
+                className="w-full bg-inherit border px-[6px] py-[2px] rounded-md focus:outline-none focus:border-blue-500"
+                type="date"
+                name=""
+                id=""
+              />
             </div>
           </div>
         </div>
@@ -37,7 +42,7 @@ const FilterSection = ({
           <div>
             <select
               onChange={handelPriorityFilter}
-              className="w-full bg-inherit border p-[6px] rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full bg-inherit border p-[5px] rounded-md focus:outline-none focus:border-blue-500"
               name="priority"
               id="priority"
             >

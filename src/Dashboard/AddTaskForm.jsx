@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import moment from "moment";
 import useTasks from "../Hooks/useTasks";
 import PrivateAxios from "../Hooks/PrivateAxios";
 import toast from "react-hot-toast";
@@ -16,7 +15,11 @@ const AddTaskForm = () => {
   } = useForm();
 
   const onSubmitHandler = (data) => {
-    const time = moment().format('l');
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    const time = month + "/" + date + "/" + year;
     const status = "pending";
     const taskInfo = { ...data, time, status };
     try {
