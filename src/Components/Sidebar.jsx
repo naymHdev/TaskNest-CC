@@ -1,9 +1,4 @@
-import {
-  MdDashboardCustomize,
-  MdSettings,
-  MdOutlineHome,
-} from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
+import { MdDashboardCustomize, MdOutlineHome } from "react-icons/md";
 
 import { NavLink } from "react-router-dom";
 
@@ -31,26 +26,6 @@ const Sidebar = () => {
           }
         >
           <MdDashboardCustomize className="h-7 w-7 text-[#D68030]" />
-        </NavLink>
-        <NavLink
-          to="/settings"
-          className={({ isActive }) =>
-            isActive
-              ? "p-2 rounded-2xl bg-slate-700 text-white cursor-pointer"
-              : "p-2 rounded-2xl group hover:bg-slate-700 text-secondary/40 cursor-pointer transition-all"
-          }
-        >
-          <MdSettings className="h-7 w-7 text-[#D68030] " />
-        </NavLink>
-        <NavLink
-          to="/profile"
-          className={({ isActive }) =>
-            isActive
-              ? "p-2 rounded-2xl bg-slate-700 text-white cursor-pointer mt-auto"
-              : "p-2 rounded-2xl group hover:bg-slate-700 text-secondary/40 cursor-pointer transition-all  mt-auto"
-          }
-        >
-          <CgProfile className="h-7 w-7 text-[#D68030] " />
         </NavLink>
       </div>
     </div>
