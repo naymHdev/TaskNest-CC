@@ -3,6 +3,8 @@ import FilterSection from "./FilterSection";
 import AddTask from "./AddTask";
 import useTasks from "../Hooks/useTasks";
 import { useEffect, useState } from "react";
+import { Input } from "antd";
+const { Search } = Input;
 
 const Dashboard = () => {
   const [isTasks, refetch] = useTasks();
@@ -46,10 +48,15 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="p-3">
-        <h1 className=" text-4xl font-bold text-[#FA963A]">
-          Task <span className=" text-slate-800">Board</span>
-        </h1>
+      <div className="p-3 flex justify-between items-center">
+        <div className=" w-full">
+          <h1 className="text-2xl md:text-4xl font-bold text-[#FA963A]">
+            Task <span className=" text-slate-800">Board</span>
+          </h1>
+        </div>
+        <div className=" w-full md:w-[400px]">
+          <Search placeholder="Task search" onChange={handelSearch} />
+        </div>
       </div>
       <section>
         <FilterSection

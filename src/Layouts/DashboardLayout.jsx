@@ -7,7 +7,7 @@ const DashboardLayout = () => {
       <div className=" fixed">
         <Sidebar />
       </div>
-      <div className=" w-11/12 ml-[48px] md:ml-[50px] lg:mx-auto py-2">
+      <div className=" w-11/12 ml-[41px] md:ml-[47px] lg:mx-auto py-2">
         <Outlet />
       </div>
     </div>

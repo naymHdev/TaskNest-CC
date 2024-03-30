@@ -5,20 +5,19 @@ import { FaFilter } from "react-icons/fa";
 const { RangePicker } = DatePicker;
 
 const FilterSection = ({
-  handelSearch,
   handelAssigneeFilter,
   handelPriorityFilter,
   handelDateFilter,
 }) => {
   return (
-    <div className="grid md:flex justify-between py-8">
+    <div className="flex justify-between py-5 px-2">
       <section>
-        <div className="flex items-center gap-5">
-          <div className=" flex items-center text-xl gap-1 font-semibold">
+        <div className="flex items-center gap-1 md:gap-5">
+          <div className=" flex items-center md:text-xl gap-1 font-semibold">
             <IoFilter />
             <h3>Filter</h3>
           </div>
-          <div className="md:flex gap-5 space-y-3 md:space-y-0 items-center">
+          <div className="flex items-center gap-1 md:gap-3">
             <div>
               <Input
                 onChange={handelAssigneeFilter}
@@ -30,10 +29,10 @@ const FilterSection = ({
             </div>
           </div>
         </div>
-        <div className="mt-5 flex items-center gap-5">
+        <div className="mt-5 flex items-center gap-1 md:gap-5">
           <div className="flex items-center gap-1 font-semibold">
             <FaFilter />
-            <h3 className=" text-xl">Short</h3>
+            <h3 className="md:text-xl">Short</h3>
           </div>
           <div>
             <select
@@ -49,18 +48,7 @@ const FilterSection = ({
           </div>
         </div>
       </section>
-      <section className="flex md:mt-0 mt-5 order-fast md:order-last">
-        <div>
-          <input
-            onChange={handelSearch}
-            className="w-full bg-inherit border p-1 rounded-md focus:outline-none focus:border-blue-500"
-            type="search"
-            name=""
-            id=""
-            placeholder="Search task"
-          />
-        </div>
-      </section>
+      <section className="flex md:mt-0 mt-5 order-fast md:order-last"></section>
     </div>
   );
 };
