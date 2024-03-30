@@ -2,11 +2,21 @@ import { Input, Select, DatePicker } from "antd";
 import { IoFilter } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
 import { useState } from "react";
-import Search from "antd/es/input/Search";
+import useTasks from "../Hooks/useTasks";
 const { RangePicker } = DatePicker;
 
 const FilterSection = () => {
+  const [isTasks] = useTasks();
+
   const [value, setValue] = useState(null);
+  const [val, setVal] = useState("");
+  const [task, setTask] = useState(isTasks);
+  const [fTask, setFtask] = useState(task);
+
+  // Search functionality
+  const onChangeEvent = (e) => {
+    console.log(e);
+  };
 
   const handleChange = (value) => {
     console.log(`selected ${value}`);
@@ -19,9 +29,6 @@ const FilterSection = () => {
     }
     return false;
   };
-
-  // Search
-  const onSearch = (value, _e, info) => console.log(info?.source, value);
 
   return (
     <div className="grid md:flex justify-between py-8">
@@ -99,12 +106,13 @@ const FilterSection = () => {
       </section>
       <section className="flex md:mt-0 mt-5 order-fast md:order-last">
         <div>
-          <Search
+          <input
+            onChange={(e) => onChangeEvent(e.target.value)}
+            className="w-full bg-inherit border p-1 rounded-md focus:outline-none focus:border-blue-500"
+            type="search"
+            name=""
+            id=""
             placeholder="Search task"
-            onSearch={onSearch}
-            style={{
-              width: 250,
-            }}
           />
         </div>
       </section>
