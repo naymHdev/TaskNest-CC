@@ -16,9 +16,11 @@ const Header = () => {
     <div>
       <div className="navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
-          <a className="text-2xl text-[#F89A67] md:px-5 font-bold">
-            Task<span className=" text-slate-900">mate</span>
-          </a>
+          <Link to="/">
+            <a className="text-2xl text-[#F89A67] md:px-5 font-bold">
+              Task<span className=" text-slate-900">mate</span>
+            </a>
+          </Link>
         </div>
 
         <div className="navbar-end md:px-5">
@@ -30,19 +32,19 @@ const Header = () => {
                 </a>
               </Link>
             </div>
-            <ul
+            <div
               tabIndex={0}
-              className="dropdown-content z-[1] mt-3 menu bg-[#c8c0c0] rounded-md w-28"
+              className="dropdown-content z-[1] flex items-center justify-center mt-3 bg-[#c8c0c0] rounded-md"
             >
               {user && (
-                <button
+                <div
                   onClick={handelLogOut}
-                  className=" font-bold hover:cursor-pointer p-1 hover:text-green-500"
+                  className="font-bold hover:cursor-pointer px-2 py-2 rounded-md hover:text-slate-50 text-center hover:bg-green-500"
                 >
                   Log out
-                </button>
+                </div>
               )}
-            </ul>
+            </div>
           </div>
         </div>
       </div>
