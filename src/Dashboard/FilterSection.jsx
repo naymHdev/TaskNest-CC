@@ -2,24 +2,14 @@
 import { Input, DatePicker } from "antd";
 import { IoFilter } from "react-icons/io5";
 import { FaFilter } from "react-icons/fa";
-import { useState } from "react";
 const { RangePicker } = DatePicker;
 
 const FilterSection = ({
   handelSearch,
   handelAssigneeFilter,
   handelPriorityFilter,
+  handelDateFilter,
 }) => {
-  const [value, setValue] = useState(null);
-
-  // Date picker
-  const disabledDate = (current, { from }) => {
-    if (from) {
-      return Math.abs(current.diff(from, "days")) >= 7;
-    }
-    return false;
-  };
-
   return (
     <div className="grid md:flex justify-between py-8">
       <section>
@@ -36,11 +26,7 @@ const FilterSection = ({
               />
             </div>
             <div>
-              <RangePicker
-                value={value}
-                disabledDate={disabledDate}
-                onChange={setValue}
-              />
+              <RangePicker onChange={handelDateFilter} />
             </div>
           </div>
         </div>
@@ -52,7 +38,7 @@ const FilterSection = ({
           <div>
             <select
               onChange={handelPriorityFilter}
-              className="w-full bg-inherit border p-1 rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full bg-inherit border p-[6px] rounded-md focus:outline-none focus:border-blue-500"
               name="priority"
               id="priority"
             >
