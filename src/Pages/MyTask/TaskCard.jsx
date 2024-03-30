@@ -7,7 +7,8 @@ import toast from "react-hot-toast";
 import useTasks from "../../Hooks/useTasks";
 
 const TaskCard = ({ task, handleTaskDelete }) => {
-  const { assignee, description, title, time, priority, _id } = task || {};
+  const { assignee, description, title, time, priority, _id, status } =
+    task || {};
 
   const [, refetch] = useTasks();
 
@@ -46,10 +47,25 @@ const TaskCard = ({ task, handleTaskDelete }) => {
       console.log(error);
     }
   };
+  /* 
+Pending
+In Progress
+Completed
+Deployed
+Deferred
 
+*/
   return (
     <>
-      <section className={`mt-5 bg-[#EEEEEE] rounded-xl p-2 shadow-md`}>
+      <section
+        className={`mt-5 
+      ${status == "pending" && "bg-[#EEEEEE]"}
+      ${status == "inProgress" && "bg-[#F8EDC8]"}
+      ${status == "completed" && "bg-[#C8F8CD]"}
+      ${status == "deployed" && "bg-[#C3C7FB]"}
+      ${status == "deferred" && "bg-[#C8EBF8]"}
+       rounded-xl p-2 shadow-md`}
+      >
         <div className=" flex items-center justify-between font-semibold">
           <p className=" text-sm">{time}</p>
           <div className="dropdown dropdown-hover">

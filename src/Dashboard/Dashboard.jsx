@@ -13,7 +13,7 @@ const Dashboard = () => {
       <section>
         <FilterSection />
       </section>
-      <div className="flex justify-end py-5 px-3">
+      <div className="flex justify-end py-1 px-2">
         <AddTask />
       </div>
       <section>
