@@ -11,10 +11,8 @@ const MyTask = () => {
     (task) => task.status === "inProgress"
   );
   const completedTasks = isTasks?.filter((task) => task.status === "completed");
-  console.log("completedTasks", completedTasks);
   const deployedTasks = isTasks?.filter((task) => task.status === "deployed");
   const deferredTasks = isTasks?.filter((task) => task.status === "deferred");
-  console.log("deferredTasks", deferredTasks);
 
   // Task deleting handel
   const handleTaskDelete = (id) => {
