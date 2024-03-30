@@ -2,17 +2,21 @@
 import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
 import EditTask from "./EditTask";
 import PrivateAxios from "../../Hooks/PrivateAxios";
+import toast from "react-hot-toast";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, refetch }) => {
   const { assignee, description, title, time, priority, _id } = task || {};
 
   const handleTaskDelete = async (id) => {
     await PrivateAxios.delete(`/taskMate/tasks/${id}`)
       .then((res) => {
         console.log(res);
+        refetch();
+        toast.success("Task Deleted!");
       })
       .catch((err) => {
         console.log(err);
+        toast.error(err.message);
       });
   };
 

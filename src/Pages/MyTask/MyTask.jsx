@@ -2,7 +2,7 @@ import useTasks from "../../Hooks/useTasks";
 import TaskCard from "./TaskCard";
 
 const MyTask = () => {
-  const [isTasks] = useTasks();
+  const [isTasks, refetch] = useTasks();
 
   const pendingTasks = isTasks?.filter((task) => task.status === "pending");
   const inProgressTasks = isTasks?.filter(
@@ -23,7 +23,7 @@ const MyTask = () => {
           </div>
           <div>
             {pendingTasks?.map((task) => (
-              <TaskCard key={task._id} task={task} />
+              <TaskCard key={task._id} task={task} refetch={refetch} />
             ))}
           </div>
         </div>

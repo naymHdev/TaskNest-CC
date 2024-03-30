@@ -1,11 +1,9 @@
-import { useForm } from "react-hook-form";
-import { useUpdateTaskMutation } from "../../redux/features/tasks/tasksApi";
-
 /* eslint-disable react/prop-types */
-const EditTaskForm = ({ task }) => {
-  const { assignee, description, title, priority, team, _id } = task || {};
+import { useForm } from "react-hook-form";
+import PrivateAxios from "../../Hooks/PrivateAxios";
 
-  const [updateTask] = useUpdateTaskMutation();
+const EditTaskForm = ({ task }) => {
+  const { assignee, description, title, priority, team } = task || {};
 
   const {
     reset,
@@ -15,19 +13,21 @@ const EditTaskForm = ({ task }) => {
   } = useForm();
 
   const onSubmitHandler = (data) => {
-    console.log(data);
+    try {
+      PrivateAxios.put("/taskMate/tasks", data)
+        .then((res) => {
+          console.log("Update task", res);
+        })
+        .catch((err) => {
+          console.log("Update err", err);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handelReset = () => {
     reset();
-  };
-
-  const handleTaskUpdate = async (id) => {
-    try {
-      await updateTask({ id });
-    } catch (error) {
-      console.error("Error deleting task:", error);
-    }
   };
 
   return (
@@ -151,7 +151,6 @@ const EditTaskForm = ({ task }) => {
               Reset
             </button>
             <button
-              onClick={() => handleTaskUpdate(_id)}
               className="bg-[#FA963A] hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >

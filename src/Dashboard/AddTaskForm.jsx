@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import moment from "moment";
-import { usePostTaskMutation } from "../redux/features/tasks/tasksApi";
+import useTasks from "../Hooks/useTasks";
+import PrivateAxios from "../Hooks/PrivateAxios";
+import toast from "react-hot-toast";
 
 const AddTaskForm = () => {
-  const [postTask] = usePostTaskMutation();
+  const [, refetch] = useTasks();
 
   const {
     reset,
@@ -17,7 +19,18 @@ const AddTaskForm = () => {
     const time = moment().format("ll");
     const status = "pending";
     const taskInfo = { ...data, time, status };
-    postTask(taskInfo);
+    try {
+      PrivateAxios.post("/taskMate/tasks", taskInfo)
+        .then((res) => {
+          if (res.data.acknowledged) {
+            toast.success("Task Added.");
+            refetch();
+          }
+        })
+        .catch((err) => console.log(err));
+    } catch (errors) {
+      console.log(errors);
+    }
   };
 
   const handleTaskCancel = () => {
