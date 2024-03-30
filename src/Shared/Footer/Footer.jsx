@@ -4,7 +4,7 @@ import { FaFacebookSquare, FaGithubSquare, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="footer p-10 bg-slate-700 text-neutral-content">
+    <footer className="footer md:p-10 p-5 bg-slate-700 text-neutral-content">
       <aside>
        <div className=" flex items-center">
        <svg
@@ -29,7 +29,7 @@ const Footer = () => {
         </p>
       </aside>
       <nav>
-        <h6 className="footer-title text-xl font-bold text-white">Social</h6>
+        <h6 className="footer-title text-xl font-bold text-slate-50">Social</h6>
         <div className="grid grid-flow-col gap-4 text-2xl">
           <a target="_blank" href="https://web.facebook.com/naymHdev">
             <FaFacebookSquare className=" text-sky-600" />
