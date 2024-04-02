@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Auth/firebase.config";
-import SecureAxios from "../Auth/SecureAxios";
+import PrivateAxios from "../Hooks/PrivateAxios";
 
 export const AuthContext = createContext();
 const googleProvider = new GoogleAuthProvider();
@@ -51,29 +51,29 @@ const AuthProvider = ({ children }) => {
       const loggedUser = { email: userEmail };
 
       setUser(currentUser);
-      // console.log("currentUserJWT", currentUser);
+      console.log("currentUserJWT", currentUser);
       setLoading(false);
 
       ////////////// JWT Function
       if (currentUser) {
-        SecureAxios.post("/taskMate/jwt", loggedUser, {
+        PrivateAxios.post("/taskMate/jwt", loggedUser, {
           withCredentials: true,
         })
           .then((res) => {
-            // console.log("Get TokensJWT", res.data);
+            console.log("Get TokensJWT", res.data);
           })
           .catch((error) => {
             console.error("Error getting JWT tokens:", error);
           });
       } else {
-        SecureAxios.post("/taskMate/logout", loggedUser, {
+        PrivateAxios.post("/taskMate/logout", loggedUser, {
           withCredentials: true,
         })
           .then((res) => {
-            // console.log("Get Log Out JWT", res.data);
+            console.log("Get Log Out JWT", res.data);
           })
           .catch((error) => {
-            // console.error("Error logging out JWT:", error);
+            console.error("Error logging out JWT:", error);
           });
       }
     });

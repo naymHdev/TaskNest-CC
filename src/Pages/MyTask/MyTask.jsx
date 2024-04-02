@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import toast from "react-hot-toast";
+import PrivateAxios from "../../Hooks/PrivateAxios";
 // import useTasks from "../../Hooks/useTasks";
 import TaskCard from "./TaskCard";
-import SecureAxios from "../../Auth/SecureAxios";
 
 const MyTask = ({records, refetch}) => {
   // const [isTasks, refetch] = useTasks();
@@ -17,7 +17,7 @@ const MyTask = ({records, refetch}) => {
 
   // Task deleting handel
   const handleTaskDelete = (id) => {
-    SecureAxios.delete(`/taskMate/tasks/${id}`)
+    PrivateAxios.delete(`/taskMate/tasks/${id}`)
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Task Deleted!");

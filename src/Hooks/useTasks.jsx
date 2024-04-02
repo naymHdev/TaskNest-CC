@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import SecureAxios from "../Auth/SecureAxios";
+import PrivateAxios from "./PrivateAxios";
 
 const useTasks = () => {
   const { refetch, data: isTasks = [] } = useQuery({
     queryKey: ["isTasks"],
     queryFn: async () => {
-      const res = await SecureAxios.get("/taskMate/tasks");
+      const res = await PrivateAxios.get("/taskMate/tasks");
       return res.data;
     },
   });

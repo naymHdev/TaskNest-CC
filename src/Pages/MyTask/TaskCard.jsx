@@ -2,9 +2,9 @@
 import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
 import EditTask from "./EditTask";
 import moment from "moment";
+import PrivateAxios from "../../Hooks/PrivateAxios";
 import toast from "react-hot-toast";
 import useTasks from "../../Hooks/useTasks";
-import SecureAxios from "../../Auth/SecureAxios";
 
 const TaskCard = ({ task, handleTaskDelete }) => {
   const { assignee, description, title, time, priority, _id, status } =
@@ -33,7 +33,7 @@ const TaskCard = ({ task, handleTaskDelete }) => {
     };
 
     try {
-      SecureAxios.put(`/taskMate/tasks/${_id}`, updateInfo)
+      PrivateAxios.put(`/taskMate/tasks/${_id}`, updateInfo)
         .then((res) => {
           if (res.data.acknowledged) {
             toast.success("Task Updated Complete");

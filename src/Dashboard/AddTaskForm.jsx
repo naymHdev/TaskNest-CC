@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import useTasks from "../Hooks/useTasks";
+import PrivateAxios from "../Hooks/PrivateAxios";
 import toast from "react-hot-toast";
-import SecureAxios from "../Auth/SecureAxios";
 
 const AddTaskForm = () => {
   const [, refetch] = useTasks();
@@ -23,7 +23,7 @@ const AddTaskForm = () => {
     const status = "pending";
     const taskInfo = { ...data, time, status };
     try {
-      SecureAxios.post("/taskMate/tasks", taskInfo)
+      PrivateAxios.post("/taskMate/tasks", taskInfo)
         .then((res) => {
           if (res.data.acknowledged) {
             toast.success("Task Added.");
