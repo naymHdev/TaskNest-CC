@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
-import PrivateAxios from "./PrivateAxios";
+import SecureAxios from "../Auth/SecureAxios";
 
 const useUser = () => {
   const { user } = useAuth();
@@ -8,7 +8,7 @@ const useUser = () => {
   const { data: isUser, refetch } = useQuery({
     queryKey: ["isUser"],
     queryFn: async () => {
-      const res = await PrivateAxios.get(`/taskMate/users/${user?.email}`);
+      const res = await SecureAxios.get(`/taskMate/users/${user?.email}`);
       return res.data;
     },
   });

@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import PrivateAxios from "../Hooks/PrivateAxios";
 import useAuth from "../Hooks/useAuth";
+import SecureAxios from "./SecureAxios";
 
 const Register = () => {
   const { userCreate, updateUser, googleJoin } = useAuth();
@@ -20,7 +20,7 @@ const Register = () => {
     const userInfo = { name, email };
 
     try {
-      const resp = await PrivateAxios.post("/taskMate/users", userInfo);
+      const resp = await SecureAxios.post("/taskMate/users", userInfo);
       const res = await userCreate(data.email, data.password);
       if (res.operationType === "signIn" || resp.data === "acknowledged") {
         toast.success("User created success.");

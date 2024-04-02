@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Auth/firebase.config";
-import PrivateAxios from "../Hooks/PrivateAxios";
+import SecureAxios from "../Auth/SecureAxios";
 
 export const AuthContext = createContext();
 const googleProvider = new GoogleAuthProvider();
@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
 
       ////////////// JWT Function
       if (currentUser) {
-        PrivateAxios.post("/taskMate/jwt", loggedUser, {
+        SecureAxios.post("/taskMate/jwt", loggedUser, {
           withCredentials: true,
         })
           .then((res) => {
@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
             console.error("Error getting JWT tokens:", error);
           });
       } else {
-        PrivateAxios.post("/taskMate/logout", loggedUser, {
+        SecureAxios.post("/taskMate/logout", loggedUser, {
           withCredentials: true,
         })
           .then((res) => {
