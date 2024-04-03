@@ -5,8 +5,14 @@ const useTasks = () => {
   const { refetch, data: isTasks = [] } = useQuery({
     queryKey: ["isTasks"],
     queryFn: async () => {
-      const res = await PrivateAxios.get("/taskMate/tasks");
-      return res.data;
+      try {
+        const res = await PrivateAxios.get("/taskMate/tasks");
+        // console.log(res.data);
+        return res.data;
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+        throw new Error("Failed to fetch tasks");
+      }
     },
   });
 

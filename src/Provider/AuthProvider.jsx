@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
       const loggedUser = { email: userEmail };
 
       setUser(currentUser);
-      console.log("currentUserJWT", currentUser);
+      // console.log("currentUserJWT", currentUser);
       setLoading(false);
 
       ////////////// JWT Function
@@ -60,20 +60,20 @@ const AuthProvider = ({ children }) => {
           withCredentials: true,
         })
           .then((res) => {
-            console.log("Get TokensJWT", res.data);
+            // console.log("Get TokensJWT", res.data);
           })
           .catch((error) => {
-            console.error("Error getting JWT tokens:", error);
+            // console.error("Error getting JWT tokens:", error);
           });
       } else {
         PrivateAxios.post("/taskMate/logout", loggedUser, {
           withCredentials: true,
         })
           .then((res) => {
-            console.log("Get Log Out JWT", res.data);
+            // console.log("Get Log Out JWT", res.data);
           })
           .catch((error) => {
-            console.error("Error logging out JWT:", error);
+            // console.error("Error logging out JWT:", error);
           });
       }
     });

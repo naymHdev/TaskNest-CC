@@ -8,7 +8,7 @@ const Header = () => {
 
   const handelLogOut = () => {
     logOut()
-      .then(() => toast.success("Login Success."))
+      .then(() => toast.success("Log out Success."))
       .catch(() => toast.error("Log out failed!"));
   };
 
