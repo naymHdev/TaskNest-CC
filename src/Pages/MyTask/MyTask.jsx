@@ -5,6 +5,7 @@ import TaskCard from "./TaskCard";
 
 const MyTask = ({ records, refetch }) => {
 
+  // Data filtering
   const pendingTasks =
     records && records?.filter((task) => task.status === "pending");
   const inProgressTasks =

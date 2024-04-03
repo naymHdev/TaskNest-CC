@@ -8,9 +8,9 @@ const { Search } = Input;
 
 const Dashboard = () => {
   const [isTasks, refetch] = useTasks();
-  console.log('isTasks', isTasks);
+  // console.log('isTasks', isTasks);
   const [records, setRecords] = useState([]);
-  console.log("records", records);
+  // console.log("records", records);
 
   useEffect(() => {
     setRecords(isTasks);
